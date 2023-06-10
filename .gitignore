@@ -35,4 +35,10 @@ yarn-error.log*
 next-env.d.ts
 
 # storycap
-__screenshots__.reg
+__screenshots__
+
+# reg-suit
+.reg
+
+# storybook
+storybook-static

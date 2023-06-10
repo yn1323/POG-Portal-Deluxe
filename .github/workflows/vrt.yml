@@ -13,9 +13,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18.x"
-      - name: npm install, build, and test
+      - name: npm install
         run: |
           npm i
+      - name: Build Storybook
+        run: |
+          npm run build-storybook
       - name: Storycap
         run: |
           npm run storycap
