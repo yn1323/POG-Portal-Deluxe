@@ -16,9 +16,6 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm i
-      - name: Launch Storybook
-        run: |
-          npm run storybook
       - name: Storycap
         run: |
           npm run capture-storybook

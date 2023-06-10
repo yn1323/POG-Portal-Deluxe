@@ -10,7 +10,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "generate": "scaffdog generate",
-    "storybook-capture": "storycap http://localhost:6006"
+    "storycap": "storycap --serverCmd \"npm run storybook\" http://localhost:6006 --serverTimeout 600000"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.1.4",

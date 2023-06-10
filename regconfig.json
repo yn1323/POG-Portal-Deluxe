@@ -16,7 +16,7 @@
       "clientId": "MzM1tDQ0MDA20g/wd9cNyC8qSczRdUnNKa1I1TcytjA0MrI016/MMzQ2MgYA"
     },
     "reg-publish-s3-plugin": {
-      "bucketName": "your_s3_bucket_name"
+      "bucketName": "yn-vrt-pog-portal"
     }
   }
 }
