@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "generate": "scaffdog generate",
+    "storybook-capture": "storycap http://localhost:6006"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.1.4",
@@ -19,13 +23,25 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@chakra-ui/storybook-addon": "^4.0.16",
+    "@storybook/addon-essentials": "^7.0.20",
+    "@storybook/addon-interactions": "^7.0.20",
+    "@storybook/addon-links": "^7.0.20",
+    "@storybook/blocks": "^7.0.20",
+    "@storybook/nextjs": "^7.0.20",
+    "@storybook/react": "^7.0.20",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "@types/node": "20.2.6",
     "@types/react": "18.2.10",
     "@types/react-dom": "18.2.4",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",
     "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-storybook": "^0.6.12",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "scaffdog": "^2.5.0",
+    "storybook": "^7.0.20",
+    "storycap": "^4.1.1",
     "typescript": "5.1.3"
   }
 }
