@@ -1,5 +1,4 @@
 import type { Preview } from "@storybook/react";
-import { withScreenshot } from "storycap";
 
 const preview: Preview = {
   parameters: {
@@ -10,15 +9,7 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
-    screenshot: {
-      variants: {
-        sp: {
-          viewport: "iPhone 11",
-        },
-      },
-    },
   },
 };
-export const decorators = [withScreenshot];
 
 export default preview;

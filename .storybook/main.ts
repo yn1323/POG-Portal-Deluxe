@@ -1,12 +1,11 @@
 import type { StorybookConfig } from "@storybook/nextjs";
 const config: StorybookConfig = {
-  stories: ["../**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: ["../stories/**/*.mdx", "../stories/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@chakra-ui/storybook-addon",
-    "storycap",
   ],
   framework: {
     name: "@storybook/nextjs",
@@ -15,6 +14,10 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
+  refs: {
+    "@chakra-ui/react": {
+      disable: true,
+    },
+  },
 };
-
 export default config;
