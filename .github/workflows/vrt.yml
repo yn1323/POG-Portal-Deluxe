@@ -1,0 +1,30 @@
+name: vrt
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Use Node.js v18
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+      - name: npm install, build, and test
+        run: |
+          npm i
+      - name: Launch Storybook
+        run: |
+          npm run storybook
+      - name: Storycap
+        run: |
+          npm run capture-storybook
+      - name: workaround for detached HEAD
+        run: |
+          git checkout ${GITHUB_REF#refs/heads/} || git checkout -b ${GITHUB_REF#refs/heads/} && git pull
+      - name: run reg-suit
+        run: |
+          npx reg-suit run
