@@ -10,7 +10,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "generate": "scaffdog generate",
-    "storycap": "storycap --serverCmd \"npx http-server storybook-static -p 9001\" http://localhost:9001"
+    "test-storybook": "test-storybook",
+    "test-storybook:ci": "npx concurrently -k -s first -n \"STORYBOOK,TEST-STORYBOOK\" -c \"magenta,blue\" \"npx http-server storybook-static --port 8090 --silent\" \"npx wait-on tcp:8090 && test-storybook --url http://127.0.0.1:8090/storybook \""
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.1.4",
@@ -30,6 +31,7 @@
     "@storybook/blocks": "^7.0.20",
     "@storybook/nextjs": "^7.0.20",
     "@storybook/react": "^7.0.20",
+    "@storybook/test-runner": "^0.10.0",
     "@storybook/testing-library": "^0.0.14-next.2",
     "@types/node": "20.2.6",
     "@types/react": "18.2.10",

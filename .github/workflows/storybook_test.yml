@@ -1,0 +1,17 @@
+name: storybook_test
+
+on: [push]
+
+jobs:
+  storybook_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Use Node.js v18
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+      - name: StorybookTest
+        uses: ./.github/actions/storybook_test
