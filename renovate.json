@@ -1,0 +1,26 @@
+{
+  "extends": ["config:base"],
+  "timezone": "Asia/Tokyo",
+  "labels": ["renovate"],
+  "baseBranches": ["main"],
+  "schedule": ["every weekend"],
+  "platformAutoMerge": true,
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["eslint"],
+      "labels": ["ESLint"]
+    },
+    {
+      "matchPackagePatterns": ["storybook", "@storybook"],
+      "labels": ["Storybook"]
+    },
+    {
+      "matchPackagePatterns": ["react"],
+      "labels": ["React"]
+    },
+    {
+      "matchPackagePatterns": ["@chakra-ui", "@emotion", "framer-motion"],
+      "labels": ["ChakraUI"]
+    }
+  ]
+}
