@@ -1,4 +1,4 @@
-import { Providers } from "@app/providers";
+import { Providers } from "@config/Providers";
 
 export default function RootLayout({
   children,
