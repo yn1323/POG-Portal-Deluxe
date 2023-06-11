@@ -4,7 +4,10 @@ import { LoginButton } from '.'
 const meta = {
   title: 'feature/LoginForm/LoginButton',
   component: LoginButton,
-  args: { handleGoogleLogin: () => {} },
+  args: {
+    handleGoogleLogin: () => {},
+    isLoading: false,
+  },
   parameters: {},
 } satisfies Meta<typeof LoginButton>
 export default meta

@@ -4,16 +4,17 @@ import { Button, VStack } from '@chakra-ui/react'
 import { FcGoogle } from 'react-icons/fc'
 
 type Props = {
+  isLoading: boolean
   handleGoogleLogin: () => void
 }
 
-export const LoginButton = ({ handleGoogleLogin }: Props) => {
+export const LoginButton = ({ isLoading, handleGoogleLogin }: Props) => {
   return (
     <VStack spacing={4}>
       <Button
         w={300}
         fontSize="sm"
-        isLoading={false}
+        isLoading={isLoading}
         leftIcon={<FcGoogle fontSize={18} />}
         onClick={handleGoogleLogin}
       >
