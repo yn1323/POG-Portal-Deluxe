@@ -1,1 +1,1 @@
-# POG-Portal-Deluxe
+# POG Portal

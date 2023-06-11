@@ -1,0 +1,57 @@
+{
+  "name": "pog-portal-deluxe",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "generate": "scaffdog generate",
+    "test-storybook": "test-storybook",
+    "test-storybook:ci": "npx concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"npx http-server storybook-static --port 6006 --silent\" \"npx wait-on tcp:127.0.0.1:6006 && yarn test-storybook\"",
+    "chromatic": "npx chromatic --project-token=chpt_d30f1cee9812ec6"
+  },
+  "dependencies": {
+    "@chakra-ui/next-js": "^2.1.4",
+    "@chakra-ui/react": "^2.7.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "framer-motion": "^10.12.16",
+    "next": "13.4.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@chakra-ui/storybook-addon": "^4.0.16",
+    "@storybook/addon-essentials": "^7.0.20",
+    "@storybook/addon-interactions": "^7.0.20",
+    "@storybook/addon-links": "^7.0.20",
+    "@storybook/blocks": "^7.0.20",
+    "@storybook/nextjs": "^7.0.20",
+    "@storybook/react": "^7.0.20",
+    "@storybook/test-runner": "^0.10.0",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "@types/node": "20.2.6",
+    "@types/react": "18.2.10",
+    "@types/react-dom": "18.2.4",
+    "chromatic": "^6.18.2",
+    "eslint": "8.42.0",
+    "eslint-config-next": "13.4.4",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-storybook": "^0.6.12",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "msw-storybook-addon": "^1.8.0",
+    "prettier": "2.8.8",
+    "scaffdog": "^2.5.0",
+    "storybook": "^7.0.20",
+    "typescript": "5.1.3"
+  },
+  "msw": {
+    "workerDirectory": "public"
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "pog-portal-deluxe@0.1.0"
+}
