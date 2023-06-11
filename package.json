@@ -19,7 +19,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "framer-motion": "^10.12.16",
-    "next": "13.4.4",
+    "next": "13.4.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -38,7 +38,7 @@
     "@types/react-dom": "18.2.4",
     "chromatic": "^6.18.2",
     "eslint": "8.42.0",
-    "eslint-config-next": "13.4.4",
+    "eslint-config-next": "13.4.5",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-storybook": "^0.6.12",
     "eslint-plugin-unused-imports": "^2.0.0",
