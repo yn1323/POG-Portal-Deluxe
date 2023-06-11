@@ -13,6 +13,7 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    chromatic: { viewports: [414, 1080] },
   },
 };
 
