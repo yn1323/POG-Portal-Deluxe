@@ -8,19 +8,19 @@
   "packageRules": [
     {
       "matchPackagePatterns": ["eslint"],
-      "labels": ["ESLint"]
+      "addLabels": ["ESLint"]
     },
     {
       "matchPackagePatterns": ["storybook", "@storybook"],
-      "labels": ["Storybook"]
+      "addLabels": ["Storybook"]
     },
     {
       "matchPackagePatterns": ["react"],
-      "labels": ["React"]
+      "addLabels": ["React"]
     },
     {
       "matchPackagePatterns": ["@chakra-ui", "@emotion", "framer-motion"],
-      "labels": ["ChakraUI"]
+      "addLabels": ["ChakraUI"]
     }
   ]
 }
