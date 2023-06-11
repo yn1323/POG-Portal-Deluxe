@@ -43,3 +43,5 @@ __screenshots__
 # storybook
 storybook-static
 build-storybook.log
+
+.env
