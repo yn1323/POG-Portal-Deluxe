@@ -1,12 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import { Meta, Meta, StoryObj } from "@storybook/react";
 import { rest } from "msw";
 
 import { {{ inputs.component | pascal }}  } from ".";
 
 const meta = {
-  component: {{ inputs.component | pascal }} ,
+  title: '{{ inputs.path }}/{{ inputs.component | pascal }}',
+  component: {{ inputs.component | pascal }},
+  args: {},
   parameters: {
-    args: {},
     msw: {
       handlers: [
         rest.get("/user", (_, res, ctx) => {

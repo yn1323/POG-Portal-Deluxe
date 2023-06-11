@@ -1,12 +1,11 @@
-import type { Preview } from "@storybook/react";
-import { initialize, mswDecorator } from "msw-storybook-addon";
+import type { Preview } from '@storybook/react'
+import { initialize, mswDecorator } from 'msw-storybook-addon'
 
-// Initialize MSW
-initialize();
+initialize()
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -15,7 +14,7 @@ const preview: Preview = {
     },
     chromatic: { viewports: [414, 1080] },
   },
-};
+  decorators: [mswDecorator],
+}
 
-export default preview;
-export const decorators = [mswDecorator];
+export default preview
