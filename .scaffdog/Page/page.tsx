@@ -1,5 +1,7 @@
+import { Animation } from "@component/layout/Animation"
+
 const {{ inputs.component | pascal }} = () => {
-  return <main>main</main>;
+  return <Animation>main</Animation>;
 };
 
 export default {{ inputs.component | pascal }};

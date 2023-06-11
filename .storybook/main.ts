@@ -1,24 +1,44 @@
-import type { StorybookConfig } from "@storybook/nextjs";
+import type { StorybookConfig } from '@storybook/nextjs'
+import path from 'path'
+
 const config: StorybookConfig = {
-  stories: ["../app/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: ['../app/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
-    "@chakra-ui/storybook-addon",
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
+    '@chakra-ui/storybook-addon',
   ],
   framework: {
-    name: "@storybook/nextjs",
+    name: '@storybook/nextjs',
     options: {},
   },
   docs: {
-    autodocs: "tag",
+    autodocs: 'tag',
   },
   refs: {
-    "@chakra-ui/react": {
+    '@chakra-ui/react': {
       disable: true,
     },
   },
-  staticDirs: ["../public"],
-};
-export default config;
+  staticDirs: ['../public'],
+  webpackFinal: async config => {
+    if (!config.resolve) {
+      return config
+    }
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@/component': path.resolve(__dirname, '../app/_components'),
+      '@/page': path.resolve(__dirname, '../app/_pages'),
+      '@/config': path.resolve(__dirname, '../app/_config'),
+      '@/hooks': path.resolve(__dirname, '../app/_src/hooks'),
+      '@/firebase': path.resolve(__dirname, '../app/_src/firebase'),
+    }
+    return config
+  },
+  env: config => ({
+    ...config,
+    EXAMPLE_VAR: 'An environment variable configured in Storybook',
+  }),
+}
+export default config

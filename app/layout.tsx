@@ -1,9 +1,9 @@
-import { Providers } from '@config/Providers'
+import { Providers } from '@/config/Providers'
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: JSX.Element | JSX.Element[]
 }) {
   return (
     <html lang="ja">
