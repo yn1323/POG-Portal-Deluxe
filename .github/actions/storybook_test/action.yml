@@ -8,9 +8,6 @@ runs:
     - name: install dependencies
       run: npm ci
       shell: bash
-    - name: storybook build
-      run: npm run build-storybook
-      shell: bash
     - name: storybook test
       run: npm run test-storybook:ci
       shell: bash
