@@ -8,7 +8,7 @@
       "type": "node-terminal"
     },
     {
-      "command": "npm run dev",
+      "command": "rm -r ./.next && npm run dev",
       "name": "Next.js dev",
       "request": "launch",
       "type": "node-terminal"
