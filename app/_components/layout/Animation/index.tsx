@@ -15,7 +15,7 @@ export const Animation: FC<PropTypes> = ({ children }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ ease: 'easeOut', duration: 0.3 }}
+      transition={{ ease: 'easeOut', duration: 0.2 }}
     >
       {childComponents}
     </motion.div>

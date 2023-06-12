@@ -8,13 +8,13 @@ questions:
   path: "What is path??(i.e. feature/Timeline)"
 ---
 
-# `{{ inputs.path }}/{{ inputs.component | pascal }}/page.stories.tsx`
+# `{{ inputs.path }}/{{ inputs.component | camel }}/page.stories.tsx`
 
 ```tsx
 {{ "Page/page.stories.tsx" | read }}
 ```
 
-# `{{ inputs.path }}/{{ inputs.component | pascal }}/page.tsx`
+# `{{ inputs.path }}/{{ inputs.component | camel }}/page.tsx`
 
 ```tsx
 {{ "Page/page.tsx" | read }}

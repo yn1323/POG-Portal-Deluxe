@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { rest } from "msw";
 
-import {{ inputs.component | pascal }} from ".page";
+import {{ inputs.component | pascal }} from "./page";
 
 const meta = {
   title: '{{ inputs.path }}/{{ inputs.component | pascal }}',

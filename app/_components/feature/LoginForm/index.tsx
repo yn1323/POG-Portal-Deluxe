@@ -9,10 +9,7 @@ import { getFirebaseAuth } from '@/firebase/client'
 export const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false)
   const auth = getFirebaseAuth()
-  const onCheckHandle = async () => {
-    const token = await auth.currentUser?.getIdToken()
-    document.cookie = `token=${token}`
-  }
+
   return (
     <VStack w={360} spacing={4}>
       <LoginButton
@@ -22,7 +19,6 @@ export const LoginForm = () => {
         }}
         isLoading={isLoading}
       />
-      <button onClick={onCheckHandle}>click</button>
     </VStack>
   )
 }
