@@ -1,14 +1,13 @@
 'use client'
 
 import { VStack } from '@chakra-ui/react'
-import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth'
 import { useState } from 'react'
 import { LoginButton } from '@/component/feature/LoginForm/LoginButton'
-import { getFirebaseAuth } from '@/firebase/client'
+import { useSession } from '@/hooks/useSession'
 
 export const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false)
-  const auth = getFirebaseAuth()
+  const { handleGoogleLogin, pendingLogin } = useSession()
 
   return (
     <VStack w={360} spacing={4}>
@@ -17,14 +16,8 @@ export const LoginForm = () => {
           setIsLoading(true)
           handleGoogleLogin()
         }}
-        isLoading={isLoading}
+        isLoading={isLoading || pendingLogin}
       />
     </VStack>
   )
-}
-
-const handleGoogleLogin = async () => {
-  const auth = getFirebaseAuth()
-  const provider = new GoogleAuthProvider()
-  await signInWithRedirect(auth, provider)
 }
