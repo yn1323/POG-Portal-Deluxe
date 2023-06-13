@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { LoginForm } from '.'
 
 const meta = {
-  title: 'feature/LoginForm',
+  title: 'feature/login/LoginForm',
   component: LoginForm,
   parameters: {
     args: {},

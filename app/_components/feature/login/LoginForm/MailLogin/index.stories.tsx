@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { LoginButton } from '.'
+import { MailLogin } from '.'
 
 const meta = {
-  title: 'feature/LoginForm/LoginButton',
-  component: LoginButton,
+  title: 'feature/Login/LoginForm/MailLogin',
+  component: MailLogin,
   args: {
-    handleGoogleLogin: () => {},
     isLoading: false,
+    onSubmit: () => {},
   },
   parameters: {},
-} satisfies Meta<typeof LoginButton>
+} satisfies Meta<typeof MailLogin>
 export default meta
 
 export const Basic: StoryObj<typeof meta> = {}

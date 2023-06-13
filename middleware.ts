@@ -2,11 +2,10 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 const logInPath = ['/dashboard']
-const notLoggedInPath = ['/']
+const notLoggedInPath = ['/', '/login/register']
 
 // 未ログイン判定
 export async function middleware(request: NextRequest, response: NextResponse) {
-  console.log('fire')
   const token = request.cookies.get('token')?.value ?? ''
   const path = new URL(request.nextUrl).pathname
   const isLoginPath = logInPath.some(p => path.startsWith(p))
@@ -26,7 +25,6 @@ export async function middleware(request: NextRequest, response: NextResponse) {
   const json = await res.json()
 
   const { isAuthenticated } = json
-  console.log(isAuthenticated)
 
   if (isNotLoginPath && isAuthenticated) {
     return NextResponse.rewrite(new URL('/dashboard', request.url))

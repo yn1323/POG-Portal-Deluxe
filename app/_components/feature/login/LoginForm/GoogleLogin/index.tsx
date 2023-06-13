@@ -8,7 +8,7 @@ type Props = {
   handleGoogleLogin: () => void
 }
 
-export const LoginButton = ({ isLoading, handleGoogleLogin }: Props) => {
+export const GoogleLogin = ({ isLoading, handleGoogleLogin }: Props) => {
   return (
     <VStack spacing={4}>
       <Button

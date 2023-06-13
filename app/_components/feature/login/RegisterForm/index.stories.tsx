@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { FormProviderDecorator } from '@/config/Decorators'
-import { {{ inputs.component | pascal }}  } from ".";
+import { RegisterForm  } from ".";
 
 const meta = {
-  title: '{{ inputs.path }}/{{ inputs.component | pascal }}',
-  component: {{ inputs.component | pascal }} ,
+  title: 'feature/login/RegisterForm',
+  component: RegisterForm ,
   args: {},
   parameters: {},
   decorators: [FormProviderDecorator],
-} satisfies Meta<typeof {{ inputs.component | pascal }} >;
+} satisfies Meta<typeof RegisterForm >;
 export default meta;
 
 export const Basic: StoryObj<typeof meta> = {};
