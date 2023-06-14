@@ -12,8 +12,6 @@ import { FC } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { RiLockPasswordLine } from 'react-icons/ri'
 
-type Props = {}
-
 export const PasswordInput: FC = () => {
   const {
     register,
