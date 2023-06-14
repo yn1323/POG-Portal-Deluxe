@@ -8,7 +8,7 @@ import {
   InputGroup,
   InputLeftElement,
 } from '@chakra-ui/react'
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { RiLockPasswordLine } from 'react-icons/ri'
 
@@ -16,7 +16,13 @@ export const PasswordInput: FC = () => {
   const {
     register,
     formState: { errors },
-  } = useFormContext()
+  } = useFormContext<{ password: string }>()
+
+  const errorMessage = useMemo(
+    () => errors.password?.message,
+    [errors.password?.message]
+  )
+
   return (
     <FormControl id="password" isInvalid={!!errors.password}>
       <FormLabel>パスワード</FormLabel>
@@ -30,16 +36,12 @@ export const PasswordInput: FC = () => {
           type="password"
           autoComplete="current-password"
           maxLength={16}
-          required
-          {...register('password', {
-            required: true,
-            minLength: 8,
-          })}
+          {...register('password')}
         />
       </InputGroup>
-      <FormHelperText color={errors.password ? 'crimson' : undefined}>
-        8文字以上16文字以内で入力してください
-      </FormHelperText>
+      {errorMessage && (
+        <FormHelperText color="crimson">{errorMessage}</FormHelperText>
+      )}
     </FormControl>
   )
 }

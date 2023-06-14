@@ -126,6 +126,8 @@ export const useSession = () => {
     handleSendPasswordResetMail,
     emailLoginLoading,
     pendingLogin:
-      window.sessionStorage.getItem('pending') === '1' && loginPending,
+      window &&
+      window.sessionStorage.getItem('pending') === '1' &&
+      loginPending,
   }
 }

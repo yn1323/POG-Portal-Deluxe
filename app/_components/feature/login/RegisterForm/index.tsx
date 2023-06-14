@@ -1,19 +1,27 @@
 'use client'
 
 import { Stack, Button, Box, Link, VStack, Text } from '@chakra-ui/react'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import { z } from 'zod'
 import { MailInput } from '@/component/form/MailInput'
 import { PasswordInput } from '@/component/form/PasswordInput'
 import { useSession } from '@/hooks/useSession'
-type FormTypes = {
-  email: string
-  password: string
-}
+import { commonSchemas } from '@/page/_src/constants/validations'
+
+const Schema = z.object({
+  email: commonSchemas.shape.email,
+  password: commonSchemas.shape.password,
+})
+
+type SchemaType = z.infer<typeof Schema>
 export const RegisterForm = () => {
-  const methods = useForm<FormTypes>()
+  const methods = useForm<SchemaType>({
+    resolver: zodResolver(Schema),
+  })
   const { handleEmailRegister, emailLoginLoading } = useSession()
 
-  const onSubmit: SubmitHandler<FormTypes> = async ({ email, password }) => {
+  const onSubmit: SubmitHandler<SchemaType> = async ({ email, password }) => {
     handleEmailRegister(email, password)
   }
 
