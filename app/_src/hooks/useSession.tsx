@@ -2,6 +2,7 @@ import { useToast } from '@chakra-ui/react'
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithRedirect,
 } from 'firebase/auth'
@@ -61,8 +62,7 @@ export const useSession = () => {
         setEmailLoginLoading(false)
         toast({
           title: 'ログインエラー',
-          description:
-            'アカウントが登録済みか確認いただくか、しばらく経ってから再度お試しください。',
+          description: 'アカウントが存在しないかパスワードが間違っています。',
           status: 'error',
           position: 'top-right',
           duration: 5000,
@@ -81,8 +81,34 @@ export const useSession = () => {
         console.error(error)
         setEmailLoginLoading(false)
         toast({
-          title: 'エラー',
           description: 'しばらく経ってから再度お試しください。',
+          status: 'error',
+          position: 'top-right',
+          duration: 5000,
+          isClosable: true,
+        })
+      })
+  }
+
+  const handleSendPasswordResetMail = (email: string) => {
+    setEmailLoginLoading(true)
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        router.push('/')
+        toast({
+          description:
+            'パスワードリセットのメールを送信しました。メールに記載のURLにアクセスしてください。',
+          status: 'success',
+          position: 'top-right',
+          duration: 5000,
+          isClosable: true,
+        })
+      })
+      .catch(error => {
+        console.error(error)
+        setEmailLoginLoading(false)
+        toast({
+          description: 'メール',
           status: 'error',
           position: 'top-right',
           duration: 5000,
@@ -97,6 +123,7 @@ export const useSession = () => {
     handleGoogleLogin,
     handleEmailLogin,
     handleEmailRegister,
+    handleSendPasswordResetMail,
     emailLoginLoading,
     pendingLogin:
       window.sessionStorage.getItem('pending') === '1' && loginPending,

@@ -43,7 +43,7 @@ export const LoginForm = () => {
           </Link>
         </Text>
         <Text as="u">
-          <Link href="/login/resetPassword">
+          <Link href="/login/forgotPassword">
             <Button variant="link" size="sm">
               パスワードを忘れた方
             </Button>
