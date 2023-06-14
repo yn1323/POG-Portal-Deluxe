@@ -7,7 +7,7 @@ import { z } from 'zod'
 import { MailInput } from '@/component/form/MailInput'
 import { PasswordInput } from '@/component/form/PasswordInput'
 import { useSession } from '@/hooks/useSession'
-import { commonSchemas } from '@/page/_src/constants/validations'
+import { commonSchemas } from '@/constants/validations'
 
 const Schema = z.object({
   email: commonSchemas.shape.email,

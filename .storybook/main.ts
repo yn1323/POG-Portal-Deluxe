@@ -32,6 +32,7 @@ const config: StorybookConfig = {
       '@/page': path.resolve(__dirname, '../app/_pages'),
       '@/config': path.resolve(__dirname, '../app/_configs'),
       '@/hooks': path.resolve(__dirname, '../app/_src/hooks'),
+      '@/constants': path.resolve(__dirname, '../app/_src/constants'),
       '@/firebase': path.resolve(__dirname, '../app/_src/firebase'),
     }
     return config

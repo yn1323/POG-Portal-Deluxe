@@ -6,7 +6,7 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { MailInput } from '@/component/form/MailInput'
 import { useSession } from '@/hooks/useSession'
-import { commonSchemas } from '@/page/_src/constants/validations'
+import { commonSchemas } from '@/constants/validations'
 
 const Schema = z.object({
   email: commonSchemas.shape.email,
