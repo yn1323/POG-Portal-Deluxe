@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 const logInPath = ['/dashboard']
-const notLoggedInPath = ['/', '/login/register']
+const notLoggedInPath = ['/', '/login/register', '/login/register']
 
 // 未ログイン判定
 export async function middleware(request: NextRequest, response: NextResponse) {
