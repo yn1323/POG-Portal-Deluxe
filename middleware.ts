@@ -1,5 +1,4 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { NextResponse, type NextRequest } from 'next/server'
 
 const logInPath = ['/dashboard']
 const notLoggedInPath = ['/', '/login/register', '/login/forgotPassword']
@@ -10,11 +9,9 @@ export async function middleware(request: NextRequest) {
   const path = new URL(request.nextUrl).pathname
   const isLoginPath = logInPath.some(p => path.startsWith(p))
   const isNotLoginPath = notLoggedInPath.some(p => path === p)
-
   if (!token && isNotLoginPath) {
     return NextResponse.next()
   }
-
   const res = await fetch(new URL('/api/auth/isAuthenticated', request.url), {
     method: 'POST',
     headers: {
@@ -23,9 +20,7 @@ export async function middleware(request: NextRequest) {
     },
   })
   const json = await res.json()
-
   const { isAuthenticated } = json
-
   if (isNotLoginPath && isAuthenticated) {
     return NextResponse.rewrite(new URL('/dashboard', request.url))
   }
