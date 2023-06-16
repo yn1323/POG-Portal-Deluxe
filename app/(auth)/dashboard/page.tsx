@@ -1,7 +1,7 @@
 'use client'
 
 import { Animation } from '@/component/layout/Animation'
-import { useSession } from '@/hooks/useSession'
+import { useSession } from '@/hooks/auth/useSession'
 
 const Dashboard = () => {
   const { logout } = useSession()

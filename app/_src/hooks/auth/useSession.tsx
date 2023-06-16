@@ -1,4 +1,3 @@
-import { useToast } from '@chakra-ui/react'
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -9,14 +8,18 @@ import {
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import { getFirebaseAuth } from '@/firebase/client'
+import { useCustomToast } from '@/hooks/ui/useCustomToast'
 
 export const useSession = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  // 単純なログインのリクエスト、レスポンス待ち
   const [loginPending, setLoginPending] = useState(true)
+  // ログイン時のリダイレクトでボタン連打防止を防ぐためのローディング
   const [waitForLoginRedirect, setWaitForLoginRedirect] = useState(false)
 
+  const [logoutPending, setLogoutPending] = useState(false)
   const [emailLoginLoading, setEmailLoginLoading] = useState(false)
-  const toast = useToast()
+  const { errorToast, successToast } = useCustomToast()
 
   const router = useRouter()
   const auth = getFirebaseAuth()
@@ -44,11 +47,20 @@ export const useSession = () => {
   }, [setWaitForLoginRedirect, loginPending])
 
   const logout = useCallback(() => {
-    auth.signOut().then(() => {
-      document.cookie = 'token=; max-age=0'
-      router.push('/')
-    })
-  }, [auth, router])
+    setLogoutPending(true)
+    auth
+      .signOut()
+      .then(() => {
+        document.cookie = 'token=; max-age=0'
+        router.push('/')
+      })
+      .catch(_ => {
+        setLogoutPending(false)
+        errorToast({
+          description: 'ログアウトに失敗しました。',
+        })
+      })
+  }, [auth, router, errorToast])
 
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider()
@@ -68,13 +80,9 @@ export const useSession = () => {
       .catch(error => {
         console.error(error)
         setEmailLoginLoading(false)
-        toast({
+        errorToast({
           title: 'ログインエラー',
           description: 'アカウントが存在しないかパスワードが間違っています。',
-          status: 'error',
-          position: 'top-right',
-          duration: 5000,
-          isClosable: true,
         })
       })
   }
@@ -88,12 +96,8 @@ export const useSession = () => {
       .catch(error => {
         console.error(error)
         setEmailLoginLoading(false)
-        toast({
+        errorToast({
           description: 'しばらく経ってから再度お試しください。',
-          status: 'error',
-          position: 'top-right',
-          duration: 5000,
-          isClosable: true,
         })
       })
   }
@@ -103,30 +107,21 @@ export const useSession = () => {
     sendPasswordResetEmail(auth, email)
       .then(() => {
         router.push('/')
-        toast({
+        successToast({
           description:
             'パスワードリセットのメールを送信しました。メールに記載のURLにアクセスしてください。',
-          status: 'success',
-          position: 'top-right',
-          duration: 5000,
-          isClosable: true,
         })
       })
       .catch(error => {
         console.error(error)
         setEmailLoginLoading(false)
-        toast({
-          description: 'メール',
-          status: 'error',
-          position: 'top-right',
-          duration: 5000,
-          isClosable: true,
-        })
+        errorToast({ description: 'しばらく経ってから再度お試しください。' })
       })
   }
 
   return {
     logout,
+    logoutPending,
     isLoggedIn,
     handleGoogleLogin,
     handleEmailLogin,

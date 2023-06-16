@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { GoogleLogin } from '@/component/feature/login/LoginForm/GoogleLogin'
 import { MailLogin } from '@/component/feature/login/LoginForm/MailLogin'
-import { useSession } from '@/hooks/useSession'
+import { useSession } from '@/hooks/auth/useSession'
 
 export const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false)

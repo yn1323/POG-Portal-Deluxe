@@ -17,11 +17,12 @@ import {
   FcNext,
   FcHome,
   FcSupport,
-  FcUndo,
   FcDonate,
   FcBullish,
   FcAddDatabase,
+  FcUndo,
 } from 'react-icons/fc'
+import { useSession } from '@/hooks/auth/useSession'
 
 const TopMenu = [
   { icon: <FcHome />, label: 'TOP', link: '/dashboard' },
@@ -40,11 +41,6 @@ const BottomMenu = [
     label: '設定',
     link: '/config',
   },
-  {
-    icon: <FcUndo />,
-    label: 'ログアウト',
-    link: '/logout',
-  },
 ] as const
 
 type Props = {
@@ -53,6 +49,8 @@ type Props = {
 
 export const PcMenu = ({ children }: Props) => {
   const router = useRouter()
+  const { logout, logoutPending } = useSession()
+
   const { isExpand, setIsExpand } = useExpandButton()
   const buttonHoverColor = useColorModeValue('gray.100', 'gray.700')
   const buttonProps = {
@@ -130,6 +128,15 @@ export const PcMenu = ({ children }: Props) => {
               {isExpand ? label : ''}
             </Button>
           ))}
+          <Button
+            leftIcon={<FcUndo />}
+            {...buttonProps}
+            aria-label="ログアウト"
+            isLoading={logoutPending}
+            onClick={logout}
+          >
+            {isExpand ? 'ログアウト' : ''}
+          </Button>
         </VStack>
       </motion.div>
       <Box
