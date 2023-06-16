@@ -12,7 +12,7 @@ export const LoginForm = () => {
   const {
     handleGoogleLogin,
     handleEmailLogin,
-    pendingLogin,
+    waitForLoginRedirect,
     emailLoginLoading,
   } = useSession()
 
@@ -23,7 +23,7 @@ export const LoginForm = () => {
           setIsLoading(true)
           handleGoogleLogin()
         }}
-        isLoading={isLoading || pendingLogin || emailLoginLoading}
+        isLoading={isLoading || waitForLoginRedirect || emailLoginLoading}
       />
       <HStack h={10} w="100%" spacing={4}>
         <Divider />
@@ -31,7 +31,7 @@ export const LoginForm = () => {
         <Divider />
       </HStack>
       <MailLogin
-        isLoading={isLoading || pendingLogin || emailLoginLoading}
+        isLoading={isLoading || waitForLoginRedirect || emailLoginLoading}
         onSubmit={handleEmailLogin}
       />
       <VStack alignItems="flex-end" w={300}>

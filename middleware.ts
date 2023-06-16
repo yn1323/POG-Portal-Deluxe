@@ -2,10 +2,10 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 const logInPath = ['/dashboard']
-const notLoggedInPath = ['/', '/login/register', '/login/register']
+const notLoggedInPath = ['/', '/login/register', '/login/forgotPassword']
 
 // 未ログイン判定
-export async function middleware(request: NextRequest, response: NextResponse) {
+export async function middleware(request: NextRequest) {
   const token = request.cookies.get('token')?.value ?? ''
   const path = new URL(request.nextUrl).pathname
   const isLoginPath = logInPath.some(p => path.startsWith(p))
@@ -34,8 +34,4 @@ export async function middleware(request: NextRequest, response: NextResponse) {
     return NextResponse.redirect(new URL('/', request.url))
   }
   return NextResponse.next()
-}
-
-export const config = {
-  matcher: [...logInPath, ...notLoggedInPath],
 }

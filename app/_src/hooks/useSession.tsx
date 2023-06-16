@@ -7,12 +7,14 @@ import {
   signInWithRedirect,
 } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
-import { useCallback, useLayoutEffect, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import { getFirebaseAuth } from '@/firebase/client'
 
 export const useSession = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [loginPending, setLoginPending] = useState(true)
+  const [waitForLoginRedirect, setWaitForLoginRedirect] = useState(false)
+
   const [emailLoginLoading, setEmailLoginLoading] = useState(false)
   const toast = useToast()
 
@@ -34,6 +36,12 @@ export const useSession = () => {
       }
     })
   }, [auth, router])
+
+  useEffect(() => {
+    setWaitForLoginRedirect(
+      window.sessionStorage.getItem('pending') === '1' && loginPending
+    )
+  }, [setWaitForLoginRedirect, loginPending])
 
   const logout = useCallback(() => {
     auth.signOut().then(() => {
@@ -125,9 +133,6 @@ export const useSession = () => {
     handleEmailRegister,
     handleSendPasswordResetMail,
     emailLoginLoading,
-    pendingLogin:
-      window &&
-      window.sessionStorage.getItem('pending') === '1' &&
-      loginPending,
+    waitForLoginRedirect,
   }
 }

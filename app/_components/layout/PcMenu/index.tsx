@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
-import { JSX, useState } from 'react'
+import { JSX, useLayoutEffect, useState } from 'react'
 import {
   FcPrevious,
   FcNext,
@@ -148,11 +148,15 @@ export const PcMenu = ({ children }: Props) => {
 const LS_MENU_EXPAND_KEY = 'authLayoutPC'
 
 export const useExpandButton = () => {
-  const [isExpand, _setIsExpand] = useState(
-    window
-      ? !parseInt(window.localStorage.getItem(LS_MENU_EXPAND_KEY) ?? '1', 10)
-      : false
-  )
+  const [isExpand, _setIsExpand] = useState(true)
+
+  useLayoutEffect(() => {
+    _setIsExpand(
+      window
+        ? !parseInt(window.localStorage.getItem(LS_MENU_EXPAND_KEY) ?? '1', 10)
+        : false
+    )
+  }, [_setIsExpand])
 
   const setIsExpand = (nextExpandState: boolean) => {
     localStorage.setItem(LS_MENU_EXPAND_KEY, nextExpandState ? '0' : '1')
