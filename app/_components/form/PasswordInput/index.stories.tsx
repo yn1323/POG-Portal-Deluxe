@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { PasswordInput } from '.'
 import { FormProviderDecorator } from '@/config/Decorators'
+import { PasswordInput } from '.'
 
 const meta = {
   title: 'form/PasswordInput',

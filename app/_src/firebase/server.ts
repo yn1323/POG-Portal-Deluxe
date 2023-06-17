@@ -13,3 +13,6 @@ const app: App =
     : (admin.apps[0] as App)
 
 export const getServerAuth = () => admin.auth(app)
+export const serverCollection = admin
+  .firestore(app)
+  .collection(process.env.DEV_FIRESTORE_COLLECTION ?? 'pog-portal')
