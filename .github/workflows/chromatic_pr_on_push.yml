@@ -4,18 +4,9 @@ on: pull_request
 
 jobs:
   chromatic_pr_on_push:
+    if: (github.event.pull_request.draft == false && !contains(${{ github.head_ref }} , 'renovate/'))
     runs-on: ubuntu-latest
     steps:
-      - name: Get PR Details
-        id: pr-details
-        run: |
-          DETAILS=$(gh pr view ${{ github.event.pull_request.number }} --json labels,state -q '{ "labels": .labels.nodes[].name, "isDraft": .isDraft }' || echo '{ "labels": [""], "isDraft": false }')
-          echo "::set-output name=details::$DETAILS"
-        env:
-          GH_TOKEN: ${{ secrets.G_TOKEN }}
-      - name: Conditional step
-        run: echo "This step is not skipped."
-        if: ${{ !(contains(fromJson(steps.pr-details.outputs.details).labels, 'renovate') || fromJson(steps.pr-details.outputs.details).isDraft) }}
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
