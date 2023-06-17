@@ -1,16 +1,20 @@
-import { revalidatePath } from 'next/cache'
+import { cookies } from 'next/headers'
 import { PcMenu } from '@/component/layout/PcMenu'
-import { getUserFromToken } from '@/services/auth/common'
+import { Auth } from '@/page/(auth)/auth/[token]/route'
+import { serverFetch } from '@/page/_src/api'
+import { getUserFromToken } from '@/services/auth/user'
 
 async function initialLogin() {
-  const res = await getUserFromToken()
-  return res
-}
+  const { user } = await getUserFromToken()
+  if (user) {
+    return user
+  }
 
-async function reload() {
-  'use server'
-  // await revalidate('/')
-  revalidatePath('/mogemoge')
+  const authInfo = await serverFetch<Auth>(
+    `/auth/${cookies().get('token')?.value ?? ''}`
+  )
+
+  return authInfo
 }
 
 const AuthTemplate = async ({
@@ -23,9 +27,6 @@ const AuthTemplate = async ({
     <PcMenu>
       <div>{children}</div>
       <div>{JSON.stringify(user)}</div>
-      <form action={reload}>
-        <button>ALL Refresh</button>
-      </form>
     </PcMenu>
   )
 }
