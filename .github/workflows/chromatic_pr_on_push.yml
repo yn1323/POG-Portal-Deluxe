@@ -9,8 +9,7 @@ jobs:
       - name: Get PR Details
         id: pr-details
         run: |
-          PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
-          DETAILS=$(gh pr view $PR_NUMBER --json labels,state -q '{ "labels": .labels.nodes[].name, "isDraft": .isDraft }' || echo '{ "labels": [""], "isDraft": false }')
+          DETAILS=$(gh pr view $(fromJson(github.event.pull_request.number)) --json labels,state -q '{ "labels": .labels.nodes[].name, "isDraft": .isDraft }' || echo '{ "labels": [""], "isDraft": false }')
           echo "::set-output name=details::$DETAILS"
         env:
           G_TOKEN: ${{ secrets.G_TOKEN }}
