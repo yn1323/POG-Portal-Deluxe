@@ -4,6 +4,7 @@
   "timezone": "Asia/Tokyo",
   "labels": ["renovate"],
   "baseBranches": ["main"],
+  "automerge": true,
   "schedule": ["every weekend"],
   "packageRules": [
     {
