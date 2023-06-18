@@ -1,4 +1,13 @@
+import { Metadata } from 'next'
 import { Providers } from '@/config/Providers'
+
+export const metadata: Metadata = {
+  title: 'POG-Portal',
+  robots: {
+    googleBot: 'false',
+    index: false,
+  },
+}
 
 export default function RootLayout({
   children,
