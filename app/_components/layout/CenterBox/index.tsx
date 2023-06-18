@@ -2,7 +2,7 @@
 
 import { VStack } from '@chakra-ui/react'
 import { FC } from 'react'
-import { useScreenSize } from '@/hooks/useScreenSize'
+import { useScreenSize } from '@/hooks/ui/useScreenSize'
 
 type PropTypes = {
   children: JSX.Element | JSX.Element[]

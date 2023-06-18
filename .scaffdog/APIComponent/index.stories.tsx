@@ -1,6 +1,6 @@
-import { Meta, Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
+import { FormProviderDecorator } from '@/config/Decorators'
 import { rest } from "msw";
-
 import { {{ inputs.component | pascal }}  } from ".";
 
 const meta = {
@@ -21,6 +21,7 @@ const meta = {
       ],
     },
   },
+  decorators: [FormProviderDecorator],
 } satisfies Meta<typeof {{ inputs.component | pascal }} >;
 export default meta;
 

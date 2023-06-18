@@ -1,17 +1,13 @@
-'use client'
-
-import { LoginForm } from '@/component/feature/LoginForm'
+import { LoginForm } from '@/component/feature/login/LoginForm'
 import { Animation } from '@/component/layout/Animation'
 import { CenterBox } from '@/component/layout/CenterBox'
 
 const Home = () => {
   return (
     <Animation>
-      <main>
-        <CenterBox>
-          <LoginForm />
-        </CenterBox>
-      </main>
+      <CenterBox>
+        <LoginForm />
+      </CenterBox>
     </Animation>
   )
 }

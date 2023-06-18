@@ -30,8 +30,10 @@ const config: StorybookConfig = {
       ...config.resolve.alias,
       '@/component': path.resolve(__dirname, '../app/_components'),
       '@/page': path.resolve(__dirname, '../app/_pages'),
-      '@/config': path.resolve(__dirname, '../app/_config'),
+      '@/config': path.resolve(__dirname, '../app/_configs'),
       '@/hooks': path.resolve(__dirname, '../app/_src/hooks'),
+      '@/constants': path.resolve(__dirname, '../app/_src/constants'),
+      '@/services': path.resolve(__dirname, '../app/_services'),
       '@/firebase': path.resolve(__dirname, '../app/_src/firebase'),
     }
     return config

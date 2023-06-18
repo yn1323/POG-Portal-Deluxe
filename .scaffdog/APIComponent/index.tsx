@@ -1,3 +1,6 @@
+// ドメインレベルの_componentsでの利用は控えるべきかも
+// あとで考える
+
 'use client'
 
 type Props = {}

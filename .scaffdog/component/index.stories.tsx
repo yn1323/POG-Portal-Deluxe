@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
+import { Meta, type Meta, type StoryObj } from "@storybook/react";
+import { FormProviderDecorator } from '@/config/Decorators'
 import { {{ inputs.component | pascal }}  } from ".";
 
 const meta = {
@@ -7,6 +7,7 @@ const meta = {
   component: {{ inputs.component | pascal }} ,
   args: {},
   parameters: {},
+  decorators: [FormProviderDecorator],
 } satisfies Meta<typeof {{ inputs.component | pascal }} >;
 export default meta;
 

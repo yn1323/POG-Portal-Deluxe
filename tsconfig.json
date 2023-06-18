@@ -24,6 +24,8 @@
       "@/config/*": ["./app/_configs/*"],
       "@/firebase/*": ["./app/_src/firebase/*"],
       "@/hooks/*": ["./app/_src/hooks/*"],
+      "@/constants/*": ["./app/_src/constants/*"],
+      "@/services/*": ["./app/_services/*"],
       "@/page/*": ["./app/*"]
     }
   },
