@@ -1,4 +1,4 @@
-import { Meta, type Meta, type StoryObj } from "@storybook/react";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { FormProviderDecorator } from '@/config/Decorators'
 import { {{ inputs.component | pascal }}  } from ".";
 

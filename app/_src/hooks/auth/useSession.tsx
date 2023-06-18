@@ -31,8 +31,11 @@ export const useSession = () => {
       if (user) {
         setIsLoggedIn(true)
         user.getIdToken().then(token => {
-          document.cookie = `token=${token}`
-          router.push('/dashboard')
+          // ログイン画面の場合リダイレクト
+          if (window.location.pathname === '/') {
+            document.cookie = `token=${token}`
+            router.push('/dashboard')
+          }
         })
       } else {
         setIsLoggedIn(false)

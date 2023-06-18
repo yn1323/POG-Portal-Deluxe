@@ -1,6 +1,7 @@
 import process from 'process'
 import { RequestInit } from 'next/dist/server/web/spec-extension/request'
 import { cookies, headers } from 'next/headers'
+import { Tags } from '@/page/_src/api/tags'
 import { getCookie } from '@/page/_src/client'
 
 export const makePath = (path: string) => {
@@ -13,8 +14,12 @@ export type BaseFetch = {
   response: unknown
   requestOptions?: {
     method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
-    query: Record<string, string | number>
+    query?: Record<string, string | number>
     cache?: RequestInit['cache']
+    next?: {
+      tags?: Tags[]
+      revalidate?: NextFetchRequestConfig['revalidate']
+    }
   }
 }
 
@@ -37,6 +42,8 @@ const baseFetch = async <T extends BaseFetch>(
 
   const cache = { cache: options?.cache ?? 'force-cache' }
 
+  const next = { next: options?.next ?? {} }
+
   const res = await fetch(targetUrl, {
     method,
     ...body,
@@ -44,6 +51,7 @@ const baseFetch = async <T extends BaseFetch>(
       cookie: `token=${cookie}`,
       'Content-Type': 'application/json',
     },
+    ...next,
     ...cache,
   })
   if (!res.ok) return {}

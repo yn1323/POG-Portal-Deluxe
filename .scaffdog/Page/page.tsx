@@ -1,4 +1,5 @@
 import { Animation } from '@/component/layout/Animation'
+import { getUserFromToken } from '@/services/auth/user'
 
 async function initialize() {
   // 'use server'

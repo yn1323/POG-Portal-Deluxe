@@ -10,10 +10,12 @@ type UserDocument = {
 
 export type GetUser = BaseFetch & {
   response: {
-    user: UserDocument & {
-      dateCreated: Date
-      dateUpdate: Date
-    }
+    user:
+      | null
+      | (UserDocument & {
+          dateCreated: Date
+          dateUpdate: Date
+        })
   }
   requestOptions: {
     query: {
@@ -69,4 +71,33 @@ export const POST = async (request: NextRequest) => {
     })
 
   return NextResponse.json(res)
+}
+
+export type UpdateUser = BaseFetch & {
+  response: {
+    ok: boolean
+  }
+  requestOptions: {
+    query: Partial<Pick<UserDocument, 'picture' | 'name'>>
+  }
+}
+export const PUT = async (
+  request: NextRequest,
+  { params: { userId } }: { params: { userId: string } }
+) => {
+  const { name, picture }: UpdateUser['requestOptions']['query'] =
+    await request.json()
+
+  const res = await serverCollection
+    .doc('account')
+    .collection('users')
+    .doc(userId)
+    .update({
+      ...(name ? { name } : {}),
+      ...(picture ? { picture } : {}),
+      dateUpdate: new Date(),
+    })
+    .catch(e => console.log(e))
+
+  return NextResponse.json({ ok: !!res })
 }

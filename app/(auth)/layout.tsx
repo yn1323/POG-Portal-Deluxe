@@ -1,27 +1,31 @@
-import { cookies } from 'next/headers'
 import { PcMenu } from '@/component/layout/PcMenu'
-import { GetAuth } from '@/page/(auth)/auth/[token]/route'
+import { GetSelf } from '@/page/(auth)/auth/self/route'
 import { PostUser } from '@/page/(auth)/users/[userId]/route'
 import { serverFetch } from '@/page/_src/api'
-import { getUserFromToken } from '@/services/auth/user'
 
 async function accountExistCheck() {
-  const { user } = await getUserFromToken()
+  const { user, isUserExistInDb } = await serverFetch<GetSelf>('/auth/self')
 
-  if (user) return
+  if (isUserExistInDb || !user) {
+    return
+  }
 
-  const authInfo = await serverFetch<GetAuth>(
-    `/auth/${cookies().get('token')?.value ?? ''}`
-  )
-
-  await serverFetch<PostUser>(`/users/${authInfo.uid}`, {
+  await serverFetch<PostUser>(`/users/${user.uid}`, {
     method: 'POST',
     query: {
-      uid: authInfo.uid,
-      name: authInfo.name,
-      picture: authInfo.picture,
+      uid: user.uid,
+      name: user.name,
+      picture: user.picture,
     },
   })
+}
+
+async function initialize() {
+  const { user } = await serverFetch<GetSelf>('/auth/self')
+  if (!user) {
+    return { name: '', uid: '' }
+  }
+  return user
 }
 
 const AuthTemplate = async ({
@@ -30,8 +34,11 @@ const AuthTemplate = async ({
   children: JSX.Element | JSX.Element[]
 }) => {
   await accountExistCheck()
+
+  const { name } = await initialize()
   return (
     <PcMenu>
+      <div>name: {name}</div>
       <div>{children}</div>
     </PcMenu>
   )
