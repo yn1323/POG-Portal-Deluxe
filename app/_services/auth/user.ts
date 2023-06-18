@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers'
-import { makePath } from '@/page/_src/api'
+import { GetUser } from '@/page/(auth)/users/[userId]/route'
+import { serverFetch } from '@/page/_src/api'
 import { checkAuthentication } from '@/services/auth/common'
 
 export type User = {
@@ -14,18 +15,9 @@ export const getUserFromToken = async (
 ) => {
   const user = await checkAuthentication(token)
 
-  if (!user) return {}
+  if (!user) return { user: null }
 
-  const res = await fetch(makePath(`/users/${user.uid}/api`), {
-    headers: {
-      cookie: `token=${token}`,
-    },
-    cache: 'force-cache',
-  })
+  const userInfo = await serverFetch<GetUser>(`/users/${user.uid}`)
 
-  if (!res?.ok) return {}
-
-  const json: User = await res.json()
-
-  return json
+  return userInfo
 }

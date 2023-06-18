@@ -1,20 +1,33 @@
 import { cookies } from 'next/headers'
 import { PcMenu } from '@/component/layout/PcMenu'
-import { Auth } from '@/page/(auth)/auth/[token]/route'
+import { GetAuth } from '@/page/(auth)/auth/[token]/route'
+import { PostUser } from '@/page/(auth)/users/[userId]/route'
 import { serverFetch } from '@/page/_src/api'
 import { getUserFromToken } from '@/services/auth/user'
 
-async function initialLogin() {
+async function accountExistCheck() {
   const { user } = await getUserFromToken()
-  if (user) {
-    return user
-  }
 
-  const authInfo = await serverFetch<Auth>(
+  console.log(user)
+  if (user) return
+
+  const authInfo = await serverFetch<GetAuth>(
     `/auth/${cookies().get('token')?.value ?? ''}`
   )
 
-  return authInfo
+  const initialRegister = await serverFetch<PostUser>(
+    `/users/${authInfo.uid}`,
+    {
+      method: 'POST',
+      query: {
+        uid: authInfo.uid,
+        name: authInfo.name,
+        picture: authInfo.picture,
+      },
+    }
+  )
+
+  console.log(initialRegister)
 }
 
 const AuthTemplate = async ({
@@ -22,11 +35,10 @@ const AuthTemplate = async ({
 }: {
   children: JSX.Element | JSX.Element[]
 }) => {
-  const user = await initialLogin()
+  await accountExistCheck()
   return (
     <PcMenu>
       <div>{children}</div>
-      <div>{JSON.stringify(user)}</div>
     </PcMenu>
   )
 }
