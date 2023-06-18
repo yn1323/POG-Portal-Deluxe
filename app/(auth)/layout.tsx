@@ -8,7 +8,6 @@ import { getUserFromToken } from '@/services/auth/user'
 async function accountExistCheck() {
   const { user } = await getUserFromToken()
 
-  console.log(user)
   if (user) return
 
   const authInfo = await serverFetch<GetAuth>(
@@ -26,8 +25,6 @@ async function accountExistCheck() {
       },
     }
   )
-
-  console.log(initialRegister)
 }
 
 const AuthTemplate = async ({

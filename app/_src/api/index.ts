@@ -1,11 +1,13 @@
+import process from 'process'
 import { RequestInit } from 'next/dist/server/web/spec-extension/request'
-import { cookies } from 'next/headers'
+import { cookies, headers } from 'next/headers'
 import { getCookie } from '@/page/_src/client'
 
-export const makePath = (path: string) =>
-  `${process.env.NEXT_PUBLIC_ENDPOINT_DOMAIN}${
-    path[0] === '/' ? '' : '/'
-  }${path}`
+export const makePath = (path: string) => {
+  const scheme = process.env.NEXT_PUBLIC_IS_LOCAL ? 'http' : 'https'
+  const host = headers().get('host')
+  return `${scheme}://${host}${path[0] === '/' ? '' : '/'}${path}`
+}
 
 export type BaseFetch = {
   response: unknown
