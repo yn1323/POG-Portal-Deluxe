@@ -3,7 +3,7 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
-  signInWithRedirect,
+  signInWithPopup,
 } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useLayoutEffect, useState } from 'react'
@@ -23,6 +23,7 @@ export const useSession = () => {
 
   const router = useRouter()
   const auth = getFirebaseAuth()
+  auth.languageCode = 'ja'
 
   useLayoutEffect(() => {
     auth.onAuthStateChanged(user => {
@@ -51,25 +52,26 @@ export const useSession = () => {
 
   const logout = useCallback(() => {
     setLogoutPending(true)
+    document.cookie = 'token=; max-age=0'
     auth
       .signOut()
       .then(() => {
-        document.cookie = 'token=; max-age=0'
         router.push('/')
+        successToast({
+          description: 'ログアウトが完了しました。',
+        })
       })
       .catch(_ => {
         setLogoutPending(false)
-        errorToast({
-          description: 'ログアウトに失敗しました。',
-        })
       })
-  }, [auth, router, errorToast])
+  }, [auth, router, successToast])
 
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider()
     // リダイレクトしてしまうので、LSでも管理する
     window.sessionStorage.setItem('pending', '1')
-    await signInWithRedirect(auth, provider)
+    // await signInWithRedirect(auth, provider)
+    await signInWithPopup(auth, provider)
   }
 
   const handleEmailLogin = (email: string, password: string) => {

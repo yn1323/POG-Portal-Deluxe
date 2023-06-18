@@ -15,6 +15,6 @@ export async function action(schema: SchemaType, { uid }: { uid: string }) {
   if (!result.ok) {
     return false
   }
-  revalidatePath('/(auth)')
+  revalidatePath('/')
   return true
 }
