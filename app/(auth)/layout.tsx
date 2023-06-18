@@ -14,17 +14,14 @@ async function accountExistCheck() {
     `/auth/${cookies().get('token')?.value ?? ''}`
   )
 
-  const initialRegister = await serverFetch<PostUser>(
-    `/users/${authInfo.uid}`,
-    {
-      method: 'POST',
-      query: {
-        uid: authInfo.uid,
-        name: authInfo.name,
-        picture: authInfo.picture,
-      },
-    }
-  )
+  await serverFetch<PostUser>(`/users/${authInfo.uid}`, {
+    method: 'POST',
+    query: {
+      uid: authInfo.uid,
+      name: authInfo.name,
+      picture: authInfo.picture,
+    },
+  })
 }
 
 const AuthTemplate = async ({
