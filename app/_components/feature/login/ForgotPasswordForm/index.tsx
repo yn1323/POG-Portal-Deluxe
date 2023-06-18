@@ -29,7 +29,12 @@ export const ForgotPasswordForm = () => {
         <Stack spacing={4} w={300} role="form">
           <MailInput />
           <Box pt={2} w="100%">
-            <Button w="100%" type="submit" isLoading={emailLoginLoading}>
+            <Button
+              w="100%"
+              type="submit"
+              isLoading={emailLoginLoading}
+              colorScheme="green"
+            >
               パスワードリセット
             </Button>
           </Box>

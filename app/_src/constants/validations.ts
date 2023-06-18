@@ -14,4 +14,5 @@ export const commonSchemas = z.object({
     .string()
     .nonempty('必須入力です')
     .max(40, '40文字以内で入力してください。'),
+  picture: z.string().optional(),
 })

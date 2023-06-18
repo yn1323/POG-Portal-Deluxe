@@ -7,6 +7,17 @@ const meta = {
   component: UserConfigForm,
   args: {
     uid: 'hoge',
+    onSubmit: async function onSubmit() {
+      return true
+    },
+    onUploadImage: async function () {
+      return true
+    },
+    defaultValues: {
+      name: 'user name',
+      picture:
+        'https://lh3.googleusercontent.com/a/AAcHTteNUbFSDCKPuY0bSF-oqnRwT0RUmlKcZtBXjEAPAg=s96-c',
+    },
   },
   parameters: {},
   decorators: [FormProviderDecorator],

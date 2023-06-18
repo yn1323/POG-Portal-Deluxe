@@ -5,7 +5,10 @@ import { SchemaType } from '@/component/feature/userConfig/UserConfigForm'
 import { UpdateUser } from '@/page/(auth)/users/[userId]/route'
 import { serverFetch } from '@/page/_src/api'
 
-export async function action(schema: SchemaType, { uid }: { uid: string }) {
+export async function userConfigFormAction(
+  schema: SchemaType,
+  { uid }: { uid: string }
+) {
   const result = await serverFetch<UpdateUser>(`/users/${uid}`, {
     query: schema,
     cache: 'no-cache',
@@ -16,5 +19,9 @@ export async function action(schema: SchemaType, { uid }: { uid: string }) {
     return false
   }
   revalidatePath('/')
+  return true
+}
+
+export async function onUploadImage(file: File) {
   return true
 }

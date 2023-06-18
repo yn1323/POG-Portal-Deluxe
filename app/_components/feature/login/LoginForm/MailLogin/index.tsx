@@ -39,7 +39,12 @@ export const MailLogin = ({ isLoading, onSubmit }: Props) => {
           <MailInput />
           <PasswordInput />
           <Box pt={2} w="100%">
-            <Button w="100%" type="submit" isLoading={isLoading}>
+            <Button
+              w="100%"
+              type="submit"
+              isLoading={isLoading}
+              colorScheme="green"
+            >
               メールアドレスでログイン
             </Button>
           </Box>

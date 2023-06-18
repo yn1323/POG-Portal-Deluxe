@@ -32,7 +32,12 @@ export const RegisterForm = () => {
           <MailInput />
           <PasswordInput />
           <Box pt={2} w="100%">
-            <Button w="100%" type="submit" isLoading={emailLoginLoading}>
+            <Button
+              w="100%"
+              type="submit"
+              isLoading={emailLoginLoading}
+              colorScheme="green"
+            >
               登録する
             </Button>
           </Box>
