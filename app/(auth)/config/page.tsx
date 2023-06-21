@@ -1,8 +1,5 @@
 import { UserConfigForm } from '@/component/feature/userConfig/UserConfigForm'
-import {
-  onUploadImage,
-  userConfigFormAction,
-} from '@/component/feature/userConfig/UserConfigForm/action'
+import { userConfigFormAction } from '@/component/feature/userConfig/UserConfigForm/action'
 import { Animation } from '@/component/layout/Animation'
 import { CenterBox } from '@/component/layout/CenterBox'
 import { GetSelf } from '@/page/(auth)/auth/self/route'
@@ -26,7 +23,6 @@ const Config = async () => {
           defaultValues={{ name, picture }}
           uid={uid}
           onSubmit={userConfigFormAction}
-          onUploadImage={onUploadImage}
         />
       </CenterBox>
     </Animation>

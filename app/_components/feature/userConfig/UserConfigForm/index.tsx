@@ -21,14 +21,12 @@ type Props = {
   uid: string
   defaultValues?: Partial<SchemaType>
   onSubmit: (data: SchemaType, { uid }: { uid: string }) => Promise<boolean>
-  onUploadImage: (file: File) => Promise<boolean>
 }
 
 export const UserConfigForm = ({
   uid,
   defaultValues = {},
   onSubmit,
-  onUploadImage,
 }: Props) => {
   const [isPending, startTransition] = useTransition()
   const { successToast, errorToast } = useCustomToast()
@@ -48,25 +46,11 @@ export const UserConfigForm = ({
     })
   }
 
-  const uploadImageHandler = async () => {
-    startTransition(async () => {
-      const result = await onUploadImage(file)
-      if (result) {
-        successToast({ title: '変更しました' })
-      } else {
-        errorToast({ title: '変更に失敗しました' })
-      }
-    })
-  }
-
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(submitHandler)}>
         <VStack w={360} spacing={6}>
-          <UserPictureInput
-            url={defaultValues.picture ?? ''}
-            onUploadImage={uploadImageHandler}
-          />
+          <UserPictureInput url={defaultValues.picture ?? ''} />
           <UserNameInput />
           <HStack justifyContent="flex-end" w="100%">
             <Button

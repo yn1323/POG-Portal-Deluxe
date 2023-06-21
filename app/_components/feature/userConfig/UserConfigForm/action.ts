@@ -21,7 +21,3 @@ export async function userConfigFormAction(
   revalidatePath('/')
   return true
 }
-
-export async function onUploadImage(file: File) {
-  return true
-}
