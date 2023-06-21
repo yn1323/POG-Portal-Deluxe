@@ -35,11 +35,11 @@ const TopMenu = [
 ] as const
 
 const BottomMenu = [
-  { icon: <FcAddDatabase />, label: 'POG登録', link: '/shift' },
+  { icon: <FcAddDatabase />, label: 'POG登録', link: '/config/pog' },
   {
     icon: <FcSupport />,
     label: '設定',
-    link: '/config',
+    link: '/config/profile',
   },
 ] as const
 
