@@ -2,7 +2,6 @@
 
 import { Button } from '@chakra-ui/react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { CenterBox } from '@/component/layout/CenterBox'
 import shockedImage from './images/shocked.png'
 
@@ -14,11 +13,13 @@ export const Sorry = () => {
       <p style={{ width: 'max-content' }}>
         しばらく経ってから試すか、下のボタンからリトライしてください。
       </p>
-      <Link href={window.location.href}>
-        <Button colorScheme="green" mt={4}>
-          リトライ
-        </Button>
-      </Link>
+      <Button
+        colorScheme="green"
+        mt={4}
+        onClick={() => (window.location.href = window.location.href)}
+      >
+        リトライ
+      </Button>
     </CenterBox>
   )
 }

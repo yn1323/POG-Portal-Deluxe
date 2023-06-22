@@ -6,14 +6,16 @@ import { GetSelf } from '@/page/(auth)/auth/self/route'
 import { serverFetch } from '@/page/_src/api'
 
 async function initialize() {
-  const { user } = await serverFetch<GetSelf>('/auth/self')
+  const { user, authUser } = await serverFetch<GetSelf>('/auth/self')
+  console.log(authUser)
+
   if (!user) {
     return { name: '', uid: '', picture: '', email: '' }
   }
-  return user
+  return { ...user, email: authUser.email ?? '' }
 }
 
-const Config = async () => {
+const Profile = async () => {
   const { name, picture, uid, email } = await initialize()
 
   return (
@@ -30,4 +32,4 @@ const Config = async () => {
   )
 }
 
-export default Config
+export default Profile

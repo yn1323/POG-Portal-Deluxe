@@ -1,21 +1,25 @@
+import { Auth } from 'firebase-admin/lib/auth/auth'
 import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerAuth } from '@/firebase/server'
 import { GetUser } from '@/page/(auth)/users/[userId]/route'
 import { BaseFetch, serverFetch } from '@/page/_src/api'
 
+// firestore user
 export type User = {
   name: string
   picture: string
   uid: string
-  email: string
 }
+
+export type AuthUser = PromiseType<ReturnType<Auth['verifyIdToken']>>
 
 export type GetSelf = BaseFetch & {
   response: {
     isAuthenticated: boolean
     isUserExistInDb: boolean
     user?: User
+    authUser: AuthUser
   }
 }
 
@@ -35,5 +39,6 @@ export const GET = async (_: NextRequest) => {
     isAuthenticated: true,
     isUserExistInDb: !!firestoreUser,
     user: firestoreUser.user ?? user,
+    authUser: user,
   })
 }

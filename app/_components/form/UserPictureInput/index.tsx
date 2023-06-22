@@ -48,6 +48,8 @@ export const UserPictureInput = ({ url }: Props) => {
         <HStack justifyContent={'space-around'} w="100%">
           <Image
             alt="avatar"
+            border="1px"
+            borderColor="gray.100"
             borderRadius="full"
             boxSize="100px"
             src={uploadedImage ?? url}
