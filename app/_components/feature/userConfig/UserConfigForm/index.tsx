@@ -1,13 +1,15 @@
 'use client'
 
-import { VStack, Button, HStack } from '@chakra-ui/react'
+import { VStack, Button, HStack, Divider, Text, Box } from '@chakra-ui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTransition } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { userConfigFormAction } from '@/component/feature/userConfig/UserConfigForm/action'
 import { UserNameInput } from '@/component/form/UserNameInput'
 import { UserPictureInput } from '@/component/form/UserPictureInput'
 import { commonSchemas } from '@/constants/validations'
+import { useSession } from '@/hooks/auth/useSession'
 import { useCustomToast } from '@/hooks/ui/useCustomToast'
 
 const Schema = z.object({
@@ -19,15 +21,18 @@ export type SchemaType = z.infer<typeof Schema>
 
 type Props = {
   uid: string
+  email: string
   defaultValues?: Partial<SchemaType>
-  onSubmit: (data: SchemaType, { uid }: { uid: string }) => Promise<boolean>
+  onSubmit: typeof userConfigFormAction
 }
 
 export const UserConfigForm = ({
   uid,
+  email,
   defaultValues = {},
   onSubmit,
 }: Props) => {
+  const { handleSendPasswordUpdateMail } = useSession()
   const [isPending, startTransition] = useTransition()
   const { successToast, errorToast } = useCustomToast()
   const methods = useForm<SchemaType>({
@@ -41,29 +46,50 @@ export const UserConfigForm = ({
       if (result) {
         successToast({ title: '変更しました' })
       } else {
-        errorToast({ title: '変更に失敗しました' })
+        errorToast({
+          title: '変更に失敗しました。しらばく経ってから再度試してください。',
+        })
       }
     })
   }
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(submitHandler)}>
-        <VStack w={360} spacing={6}>
-          <UserPictureInput url={defaultValues.picture ?? ''} />
-          <UserNameInput />
-          <HStack justifyContent="flex-end" w="100%">
-            <Button
-              w={150}
-              type="submit"
-              isLoading={isPending}
-              colorScheme="green"
-            >
-              変更する
-            </Button>
-          </HStack>
-        </VStack>
-      </form>
+      <Box pb={4}>
+        <Text fontSize="xl" textAlign="center">
+          ユーザー設定
+        </Text>
+        <form onSubmit={methods.handleSubmit(submitHandler)}>
+          <VStack p={6} spacing={6} w={360}>
+            <UserPictureInput url={defaultValues.picture ?? ''} />
+            <UserNameInput />
+            <HStack justifyContent="flex-end" w="100%">
+              <Button
+                colorScheme="green"
+                isLoading={isPending}
+                type="submit"
+                w={150}
+              >
+                変更する
+              </Button>
+            </HStack>
+          </VStack>
+        </form>
+      </Box>
+      <Divider />
+      <Box pt={4}>
+        <Text fontSize="xl" textAlign="center">
+          パスワード変更
+        </Text>
+        <Box p={6}>
+          <Button
+            colorScheme="green"
+            onClick={() => handleSendPasswordUpdateMail(email)}
+          >
+            パスワード変更メールを送る
+          </Button>
+        </Box>
+      </Box>
     </FormProvider>
   )
 }

@@ -124,6 +124,23 @@ export const useSession = () => {
       })
   }
 
+  const handleSendPasswordUpdateMail = (email: string) => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        successToast({
+          description:
+            '登録されたメールアドレスにパスワード変更メールを送りました。',
+        })
+      })
+      .catch(error => {
+        console.error(error)
+        errorToast({
+          description:
+            'メール送信に失敗しました。しばらく経ってから再度お試しください。',
+        })
+      })
+  }
+
   return {
     logout,
     logoutPending,
@@ -134,5 +151,6 @@ export const useSession = () => {
     handleSendPasswordResetMail,
     emailLoginLoading,
     waitForLoginRedirect,
+    handleSendPasswordUpdateMail,
   }
 }

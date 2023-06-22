@@ -9,7 +9,7 @@ import shockedImage from './images/shocked.png'
 export const Sorry = () => {
   return (
     <CenterBox noBorder>
-      <Image src={shockedImage} alt="" />
+      <Image alt="" src={shockedImage} />
       <h2>ページを表示できませんでした。</h2>
       <p style={{ width: 'max-content' }}>
         しばらく経ってから試すか、下のボタンからリトライしてください。

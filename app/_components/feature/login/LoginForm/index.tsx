@@ -17,15 +17,15 @@ export const LoginForm = () => {
   } = useSession()
 
   return (
-    <VStack w={360} spacing={4}>
+    <VStack spacing={4} w={360}>
       <GoogleLogin
+        isLoading={isLoading || waitForLoginRedirect || emailLoginLoading}
         handleGoogleLogin={() => {
           setIsLoading(true)
           handleGoogleLogin()
         }}
-        isLoading={isLoading || waitForLoginRedirect || emailLoginLoading}
       />
-      <HStack h={10} w="100%" spacing={4}>
+      <HStack h={10} spacing={4} w="100%">
         <Divider />
         <Box>or</Box>
         <Divider />
@@ -37,14 +37,14 @@ export const LoginForm = () => {
       <VStack alignItems="flex-end" w={300}>
         <Text as="u">
           <Link href="/login/register">
-            <Button variant="link" size="sm">
+            <Button size="sm" variant="link">
               新規登録
             </Button>
           </Link>
         </Text>
         <Text as="u">
           <Link href="/login/forgotPassword">
-            <Button variant="link" size="sm">
+            <Button size="sm" variant="link">
               パスワードを忘れた方
             </Button>
           </Link>

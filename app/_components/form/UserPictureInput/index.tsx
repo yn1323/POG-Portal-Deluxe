@@ -47,21 +47,21 @@ export const UserPictureInput = ({ url }: Props) => {
       <InputGroup>
         <HStack justifyContent={'space-around'} w="100%">
           <Image
+            alt="avatar"
             borderRadius="full"
             boxSize="100px"
             src={uploadedImage ?? url}
-            alt="avatar"
           />
           <Button
+            isLoading={isLoading}
             size="sm"
             onClick={() => onClickButton()}
-            isLoading={isLoading}
           >
             画像アップロード
           </Button>
           <input
-            type="file"
             ref={inputRef}
+            type="file"
             hidden
             onChange={async e => {
               setIsLoading(true)
@@ -93,11 +93,11 @@ export const UserPictureInput = ({ url }: Props) => {
           />
         </HStack>
         <Input
-          hidden
           data-testid="image"
+          maxLength={40}
           role="textbox"
           value={uploadedImage ?? url}
-          maxLength={40}
+          hidden
           {...register('picture')}
         />
       </InputGroup>

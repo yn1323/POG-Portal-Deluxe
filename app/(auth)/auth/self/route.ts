@@ -8,6 +8,7 @@ export type User = {
   name: string
   picture: string
   uid: string
+  email: string
 }
 
 export type GetSelf = BaseFetch & {

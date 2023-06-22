@@ -32,8 +32,8 @@ export const UserNameInput: FC = () => {
         </InputLeftElement>
         <Input
           data-testid="password"
-          role="textbox"
           maxLength={40}
+          role="textbox"
           {...register('name')}
         />
       </InputGroup>

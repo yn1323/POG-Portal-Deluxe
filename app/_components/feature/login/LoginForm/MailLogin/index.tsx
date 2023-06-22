@@ -35,15 +35,15 @@ export const MailLogin = ({ isLoading, onSubmit }: Props) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(submitHandler)}>
-        <Stack spacing={4} w={300} role="form">
+        <Stack role="form" spacing={4} w={300}>
           <MailInput />
           <PasswordInput />
           <Box pt={2} w="100%">
             <Button
-              w="100%"
-              type="submit"
-              isLoading={isLoading}
               colorScheme="green"
+              isLoading={isLoading}
+              type="submit"
+              w="100%"
             >
               メールアドレスでログイン
             </Button>

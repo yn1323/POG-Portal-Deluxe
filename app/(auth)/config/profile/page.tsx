@@ -8,19 +8,20 @@ import { serverFetch } from '@/page/_src/api'
 async function initialize() {
   const { user } = await serverFetch<GetSelf>('/auth/self')
   if (!user) {
-    return { name: '', uid: '', picture: '' }
+    return { name: '', uid: '', picture: '', email: '' }
   }
   return user
 }
 
 const Config = async () => {
-  const { name, picture, uid } = await initialize()
+  const { name, picture, uid, email } = await initialize()
 
   return (
     <Animation>
       <CenterBox>
         <UserConfigForm
           defaultValues={{ name, picture }}
+          email={email}
           uid={uid}
           onSubmit={userConfigFormAction}
         />

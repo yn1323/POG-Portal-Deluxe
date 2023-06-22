@@ -2,6 +2,17 @@
   "extends": ["next/core-web-vitals", "plugin:storybook/recommended"],
   "plugins": ["unused-imports"],
   "rules": {
+    "react/jsx-sort-props": [
+      "warn",
+      {
+        "callbacksLast": true,
+        "shorthandFirst": false,
+        "shorthandLast": true,
+        "multiline": "last",
+        "ignoreCase": true,
+        "noSortAlphabetically": false
+      }
+    ],
     "unused-imports/no-unused-imports": "error",
     "import/order": [
       "warn",

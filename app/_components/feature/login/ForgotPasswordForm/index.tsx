@@ -26,14 +26,14 @@ export const ForgotPasswordForm = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <Stack spacing={4} w={300} role="form">
+        <Stack role="form" spacing={4} w={300}>
           <MailInput />
           <Box pt={2} w="100%">
             <Button
-              w="100%"
-              type="submit"
-              isLoading={emailLoginLoading}
               colorScheme="green"
+              isLoading={emailLoginLoading}
+              type="submit"
+              w="100%"
             >
               パスワードリセット
             </Button>
@@ -41,7 +41,7 @@ export const ForgotPasswordForm = () => {
           <VStack alignItems="flex-end" w={300}>
             <Text as="u">
               <Link href="/">
-                <Button variant="link" size="sm">
+                <Button size="sm" variant="link">
                   ログイン画面に戻る
                 </Button>
               </Link>

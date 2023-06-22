@@ -31,11 +31,11 @@ export const PasswordInput: FC = () => {
           <RiLockPasswordLine />
         </InputLeftElement>
         <Input
+          autoComplete="current-password"
           data-testid="password"
+          maxLength={16}
           role="textbox"
           type="password"
-          autoComplete="current-password"
-          maxLength={16}
           {...register('password')}
         />
       </InputGroup>
