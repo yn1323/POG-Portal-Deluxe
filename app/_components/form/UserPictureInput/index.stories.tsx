@@ -7,9 +7,6 @@ const meta = {
   component: UserPictureInput,
   args: {
     url: 'https://lh3.googleusercontent.com/a/AAcHTteNUbFSDCKPuY0bSF-oqnRwT0RUmlKcZtBXjEAPAg=s96-c',
-    onUploadImage: async function () {
-      return
-    },
   },
   parameters: {},
   decorators: [FormProviderDecorator],
