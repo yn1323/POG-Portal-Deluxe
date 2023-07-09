@@ -1,29 +1,24 @@
-import { Auth } from 'firebase-admin/lib/auth/auth'
 import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerAuth } from '@/firebase/server'
 import { GetUser } from '@/page/(auth)/users/[userId]/route'
 import { BaseFetch, serverFetch } from '@/page/_src/api'
 
-// firestore user
-export type User = {
+type Pog = {
   name: string
-  picture: string
-  uid: string
+  url: string
 }
 
-export type AuthUser = PromiseType<ReturnType<Auth['verifyIdToken']>>
-
-export type GetSelf = BaseFetch & {
+export type GetPogs = BaseFetch & {
+  request: {
+    userId: string
+  }
   response: {
-    isAuthenticated: boolean
-    isUserExistInDb: boolean
-    user?: User
-    authUser: AuthUser
+    pogs: Pog[]
   }
 }
 
-export const GET = async (_: NextRequest) => {
+export const GET = async (req: NextRequest) => {
   const token = cookies().get('token')?.value ?? ''
 
   const auth = getServerAuth()

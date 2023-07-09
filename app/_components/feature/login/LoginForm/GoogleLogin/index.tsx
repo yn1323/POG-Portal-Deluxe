@@ -12,10 +12,10 @@ export const GoogleLogin = ({ isLoading, handleGoogleLogin }: Props) => {
   return (
     <VStack spacing={4}>
       <Button
-        w={300}
         fontSize="sm"
         isLoading={isLoading}
         leftIcon={<FcGoogle fontSize={18} />}
+        w={300}
         onClick={handleGoogleLogin}
       >
         Googleでログイン

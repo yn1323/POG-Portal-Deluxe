@@ -6,12 +6,12 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { MailInput } from '@/component/form/MailInput'
 import { PasswordInput } from '@/component/form/PasswordInput'
-import { commonSchemas } from '@/constants/validations'
+import { userSchemas } from '@/constants/validations'
 import { useSession } from '@/hooks/auth/useSession'
 
 const Schema = z.object({
-  email: commonSchemas.shape.email,
-  password: commonSchemas.shape.password,
+  email: userSchemas.shape.email,
+  password: userSchemas.shape.password,
 })
 
 type SchemaType = z.infer<typeof Schema>
@@ -35,15 +35,15 @@ export const MailLogin = ({ isLoading, onSubmit }: Props) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(submitHandler)}>
-        <Stack spacing={4} w={300} role="form">
+        <Stack role="form" spacing={4} w={300}>
           <MailInput />
           <PasswordInput />
           <Box pt={2} w="100%">
             <Button
-              w="100%"
-              type="submit"
-              isLoading={isLoading}
               colorScheme="green"
+              isLoading={isLoading}
+              type="submit"
+              w="100%"
             >
               メールアドレスでログイン
             </Button>

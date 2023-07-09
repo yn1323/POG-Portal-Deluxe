@@ -67,26 +67,26 @@ export const PcMenu = ({ children }: Props) => {
   return (
     <HStack>
       <motion.div
+        animate={drawerAnimation}
+        initial={drawerAnimation}
+        role="navigation"
         transition={{
           ease: 'backOut',
           duration: 0.2,
         }}
-        initial={drawerAnimation}
-        animate={drawerAnimation}
-        role="navigation"
       >
         <VStack
           alignItems="flex-start"
-          borderRight="1px"
+          background={useColorModeValue('gray.50', undefined)}
           borderColor={useColorModeValue('gray.200', 'gray.600')}
+          borderRight="1px"
           h="100vh"
           w="100%"
-          background={useColorModeValue('gray.50', undefined)}
         >
           {isExpand && (
             <Button
-              onClick={() => setIsExpand(false)}
               leftIcon={<FcPrevious />}
+              onClick={() => setIsExpand(false)}
               {...buttonProps}
               aria-label="ナビゲーションのラベルを非表示"
               display={{ base: 'none', md: 'flex' }}
@@ -94,8 +94,8 @@ export const PcMenu = ({ children }: Props) => {
           )}
           {!isExpand && (
             <Button
-              onClick={() => setIsExpand(true)}
               leftIcon={<FcNext />}
+              onClick={() => setIsExpand(true)}
               {...buttonProps}
               aria-label="ナビゲーションのラベルを表示"
               data-testid="openButton"
@@ -140,11 +140,11 @@ export const PcMenu = ({ children }: Props) => {
         </VStack>
       </motion.div>
       <Box
-        w={`calc(100vw - ${drawerAnimation.width})`}
         h="100vh"
-        p={4}
         m={0}
+        p={4}
         role="main"
+        w={`calc(100vw - ${drawerAnimation.width})`}
       >
         {children}
       </Box>

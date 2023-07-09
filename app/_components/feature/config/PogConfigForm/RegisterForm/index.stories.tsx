@@ -1,16 +1,14 @@
 import { type Meta, type StoryObj } from '@storybook/react'
 import { FormProviderDecorator } from '@/config/Decorators'
-import { UserPictureInput } from '.'
+import { RegisterForm } from '.'
 
 const meta = {
-  title: 'form/UserPictureInput',
-  component: UserPictureInput,
-  args: {
-    url: 'https://lh3.googleusercontent.com/a/AAcHTteNUbFSDCKPuY0bSF-oqnRwT0RUmlKcZtBXjEAPAg=s96-c',
-  },
+  title: 'feature/config/PogConfigForm/RegisterForm',
+  component: RegisterForm,
+  args: {},
   parameters: {},
   decorators: [FormProviderDecorator],
-} satisfies Meta<typeof UserPictureInput>
+} satisfies Meta<typeof RegisterForm>
 export default meta
 
 export const Basic: StoryObj<typeof meta> = {}

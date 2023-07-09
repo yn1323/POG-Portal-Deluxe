@@ -35,10 +35,10 @@ export const MailInput = ({ disabled }: Props) => {
           <FiMail />
         </InputLeftElement>
         <Input
-          disabled={disabled}
           data-testid="email"
-          role="textbox"
+          disabled={disabled}
           maxLength={64}
+          role="textbox"
           {...register('email')}
         />
       </InputGroup>

@@ -15,12 +15,12 @@ export const CenterBox: FC<PropTypes> = ({ children, noBorder }) => {
     <VStack h="calc(100vh - 100px)" justifyContent="center">
       {isPC ? (
         <VStack
-          shadow={noBorder ? undefined : 'md'}
           border={noBorder ? undefined : '1px'}
           borderColor="gray.200"
           borderRadius="20px"
-          py={12}
           px={4}
+          py={12}
+          shadow={noBorder ? undefined : 'md'}
           w="400px"
         >
           {children}

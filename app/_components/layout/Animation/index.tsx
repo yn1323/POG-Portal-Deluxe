@@ -12,9 +12,9 @@ export const Animation: FC<PropTypes> = ({ children }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      initial={{ opacity: 0 }}
       transition={{ ease: 'easeOut', duration: 0.2 }}
     >
       {childComponents}

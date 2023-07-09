@@ -10,9 +10,7 @@ const meta = {
     onSubmit: async function onSubmit() {
       return true
     },
-    onUploadImage: async function () {
-      return true
-    },
+    email: 'hoge',
     defaultValues: {
       name: 'user name',
       picture:
