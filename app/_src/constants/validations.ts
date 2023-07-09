@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const commonSchemas = z.object({
+export const userSchemas = z.object({
   email: z
     .string()
     .nonempty('必須入力です')
@@ -15,4 +15,26 @@ export const commonSchemas = z.object({
     .nonempty('必須入力です')
     .max(40, '40文字以内で入力してください。'),
   picture: z.string().optional(),
+})
+
+export const pogSchemas = z.object({
+  pageTitle: z
+    .string()
+    .nonempty('必須入力です')
+    .max(40, '40文字以内で入力してください。'),
+  pageUrl: z
+    .string()
+    .nonempty('必須入力です')
+    .max(200, '200文字以内で入力してください。')
+    .superRefine((value, ctx) => {
+      if (
+        !value.includes('https://pogstarion.com/groupuserlist.do?group_num=')
+      ) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: '指定のページでないか、TOPページではありません。',
+        })
+      }
+    }),
+  pageOrder: z.number().nonnegative(),
 })

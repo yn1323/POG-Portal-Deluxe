@@ -5,11 +5,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { MailInput } from '@/component/form/MailInput'
-import { commonSchemas } from '@/constants/validations'
+import { userSchemas } from '@/constants/validations'
 import { useSession } from '@/hooks/auth/useSession'
 
 const Schema = z.object({
-  email: commonSchemas.shape.email,
+  email: userSchemas.shape.email,
 })
 
 type SchemaType = z.infer<typeof Schema>

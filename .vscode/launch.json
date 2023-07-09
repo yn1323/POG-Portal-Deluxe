@@ -12,6 +12,13 @@
       "name": "Next.js dev",
       "request": "launch",
       "type": "node-terminal"
+    },
+    {
+      "type": "msedge",
+      "name": "Launch Edge in VSCode",
+      "request": "launch",
+      "runtimeArgs": ["--headless", "--remote-debugging-port=9222"],
+      "url": "/Users/natani/.vscode/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.2/out/startpage/index.html"
     }
   ]
 }

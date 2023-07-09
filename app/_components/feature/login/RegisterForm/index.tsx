@@ -6,12 +6,12 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { MailInput } from '@/component/form/MailInput'
 import { PasswordInput } from '@/component/form/PasswordInput'
-import { commonSchemas } from '@/constants/validations'
+import { userSchemas } from '@/constants/validations'
 import { useSession } from '@/hooks/auth/useSession'
 
 const Schema = z.object({
-  email: commonSchemas.shape.email,
-  password: commonSchemas.shape.password,
+  email: userSchemas.shape.email,
+  password: userSchemas.shape.password,
 })
 
 type SchemaType = z.infer<typeof Schema>

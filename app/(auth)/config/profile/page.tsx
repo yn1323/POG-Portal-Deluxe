@@ -1,7 +1,6 @@
-import { UserConfigForm } from '@/component/feature/userConfig/UserConfigForm'
-import { userConfigFormAction } from '@/component/feature/userConfig/UserConfigForm/action'
+import { UserConfigForm } from '@/component/feature/config/UserConfigForm'
+import { userConfigFormAction } from '@/component/feature/config/UserConfigForm/action'
 import { Animation } from '@/component/layout/Animation'
-import { CenterBox } from '@/component/layout/CenterBox'
 import { GetSelf } from '@/page/(auth)/auth/self/route'
 import { serverFetch } from '@/page/_src/api'
 
@@ -20,14 +19,12 @@ const Profile = async () => {
 
   return (
     <Animation>
-      <CenterBox>
-        <UserConfigForm
-          defaultValues={{ name, picture }}
-          email={email}
-          uid={uid}
-          onSubmit={userConfigFormAction}
-        />
-      </CenterBox>
+      <UserConfigForm
+        defaultValues={{ name, picture }}
+        email={email}
+        uid={uid}
+        onSubmit={userConfigFormAction}
+      />
     </Animation>
   )
 }
