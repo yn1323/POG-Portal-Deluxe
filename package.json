@@ -45,7 +45,7 @@
     "@types/react-dom": "18.2.6",
     "chromatic": "^6.18.2",
     "encoding": "^0.1.13",
-    "eslint": "8.43.0",
+    "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-storybook": "^0.6.12",
